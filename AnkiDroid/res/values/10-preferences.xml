@@ -115,9 +115,11 @@
     <string name="timeout_answer_text">Automatic display answer</string>
     <string name="timeout_answer_summ">Show answer automatically without user input</string>
     <string name="timeout_answer_seconds">Time to show answer</string>
+    <string name="auto_answer_cardtype">choose difficulty to auto select (fail,hard,recommended,easy)</string>
     <string name="timeout_answer_seconds_summ">XXX s</string>
     <string name="timeout_question_seconds">Time to show next question</string>
     <string name="timeout_question_seconds_summ">XXX s</string>
+    <string name="auto_answer_cardtype_summ">XXX s</string>
     <string name="select_locale_title">Select language</string>
     <string name="safe_display">Safe display mode</string>
     <string name="safe_display_summ">Disable all animations and use safer method for drawing cards. E-ink and older devices using custom fonts may require this.</string>

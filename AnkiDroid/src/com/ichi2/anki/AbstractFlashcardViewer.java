@@ -878,6 +878,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
 
     protected int mWaitAnswerSecond;
     protected int mWaitQuestionSecond;
+    protected int mAutoAnswerCardtype;
 
     protected int getDefaultEase() {
         if (getCol().getSched().answerButtons(mCurrentCard) == 4) {
@@ -1720,6 +1721,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         mPrefUseTimer = preferences.getBoolean("timeoutAnswer", false);
         mWaitAnswerSecond = preferences.getInt("timeoutAnswerSeconds", 20);
         mWaitQuestionSecond = preferences.getInt("timeoutQuestionSeconds", 60);
+        mAutoAnswerCardtype = preferences.getInt("autoAnswerCardtype", 1);
         mScrollingButtons = preferences.getBoolean("scrolling_buttons", false);
         mDoubleScrolling = preferences.getBoolean("double_scrolling", false);
         mPrefCenterVertically = preferences.getBoolean("centerVertically", false);
@@ -1909,8 +1911,30 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         @Override
         public void run() {
             // Assume hitting the "Again" button when auto next question
+        	Log.d(AnkiDroidApp.TAG, "@Before auto answering, mAutoAnswerCardtype is " + mAutoAnswerCardtype);
             if (mEase1Layout.isEnabled() && mEase1Layout.getVisibility() == View.VISIBLE) {
-                mEase1Layout.performClick();
+               // mEase1Layout.performClick();
+            	if (mAutoAnswerCardtype == 1){
+            		executeCommand(GESTURE_ANSWER_EASE1);
+            		Log.d(AnkiDroidApp.TAG, "@Choosing finishing auto answering, mAutoAnswerCardtype is GESTURE_ANSWER_EASE1 " + mAutoAnswerCardtype); 
+            		}
+            	else if (mAutoAnswerCardtype == 2){
+            		executeCommand(GESTURE_ANSWER_EASE2);
+            		Log.d(AnkiDroidApp.TAG, "@Choosing finishing auto answering, mAutoAnswerCardtype is GESTURE_ANSWER_EASE2 " + mAutoAnswerCardtype); 
+            		}
+            	else if (mAutoAnswerCardtype == 3){
+            		executeCommand(GESTURE_ANSWER_RECOMMENDED);
+            		Log.d(AnkiDroidApp.TAG, "@Choosing finishing auto answering, mAutoAnswerCardtype is GESTURE_ANSWER_EASE3 " + mAutoAnswerCardtype); 
+            		}
+            	else if (mAutoAnswerCardtype == 4){
+            		executeCommand(GESTURE_ANSWER_BETTER_THAN_RECOMMENDED);
+            		Log.d(AnkiDroidApp.TAG, "@Choosing finishing auto answering, mAutoAnswerCardtype is GESTURE_ANSWER_EASE4 " + mAutoAnswerCardtype); 
+            		}
+            	else
+            		{executeCommand(GESTURE_ANSWER_EASE1);
+            		Log.d(AnkiDroidApp.TAG, "@Choosing finishing auto answering, mAutoAnswerCardtype is GESTURE_ANSWER_EASE1(else mode) " + mAutoAnswerCardtype); 
+            		}
+            	Log.d(AnkiDroidApp.TAG, "@after finishing auto answering, mAutoAnswerCardtype is " + mAutoAnswerCardtype); 
             }
         }
     };

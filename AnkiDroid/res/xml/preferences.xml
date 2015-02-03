@@ -185,7 +185,13 @@
                 android:key="timeoutQuestionSeconds"
                 android:max="60"
                 android:summary="@string/timeout_question_seconds_summ"
-                android:title="@string/timeout_question_seconds" />
+                android:title="@string/timeout_question_seconds" /><com.hlidskialf.android.preference.SeekBarPreference
+                android:defaultValue="1"
+                android:dependency="timeoutAnswer"
+                android:key="autoAnswerCardtype"
+                android:max="7"
+                android:summary="@string/auto_answer_cardtype_summ"
+                android:title="@string/auto_answer_cardtype" />
         </PreferenceCategory>
     </PreferenceScreen>
 
